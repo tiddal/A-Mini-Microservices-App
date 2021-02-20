@@ -18,9 +18,16 @@ app.post('/events', (request, response) => {
     posts[id] = { id, title, comments: [] };
   };
   if (type === 'CommentCreated') {
-    const { id, postId, content } = data;
-    posts[postId].comments = [...posts[postId].comments, { id, content }];
+    const { id, postId, content, status } = data;
+    posts[postId].comments = [...posts[postId].comments, { id, content, status }];
   };
+  if (type === 'CommentUpdated') {
+    const { postId, id, content, status } = data;
+    const post = posts[postId];
+    const comment = post.comments.find((comment) => comment.id === id);
+    comment.status = status;
+    comment.content = content;
+  }
   response.send({});
 });
 
