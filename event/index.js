@@ -8,10 +8,10 @@ const events = [];
 
 app.post('/events', ({ body: event }, response) => {
   events.push(event);
-  axios.post('http://localhost:4000/events', event);
-  axios.post('http://localhost:4001/events', event);
-  axios.post('http://localhost:4002/events', event);
-  axios.post('http://localhost:4003/events', event);
+  axios.post('http://posts-service:4000/events', event);
+  axios.post('http://comments-service:4001/events', event);
+  axios.post('http://query-service:4002/events', event);
+  axios.post('http://moderation-service:4003/events', event);
   response.send({ status: 'OK' });
 });
 
