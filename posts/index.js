@@ -9,9 +9,7 @@ app.use(cors());
 
 const posts = {};
 
-app.get('/posts', (request, response) => response.send(posts));
-
-app.post('/posts', async (request, response) => {
+app.post('/posts/create', async (request, response) => {
   const id = randomBytes(4).toString('hex');
   const { title } = request.body;
   posts[id] = { id, title };
